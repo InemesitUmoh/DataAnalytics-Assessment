@@ -5,7 +5,7 @@ WITH txn_stats AS (
     SELECT 
         u.id AS customer_id,
         CONCAT(u.first_name, ' ', u.last_name) AS name,
-        TIMESTAMPDIFF(MONTH, s.transaction_date, CURDATE()) AS tenure_months,
+        TIMESTAMPDIFF(MONTH, u.date_joined, CURDATE()) AS tenure_months,
         COUNT(s.id) AS total_transactions,
         AVG(s.confirmed_amount * 0.001)/100 AS avg_profit_per_transaction
     FROM users_customuser u
